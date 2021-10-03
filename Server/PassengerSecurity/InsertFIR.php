@@ -5,6 +5,11 @@
 	if(isset($_POST['uid']) && isset($_POST['pnrNo']) && isset($_POST['lastStation']) && isset($_POST['crime']) && isset($_POST['addInfo'])){
 		$uid1 = $_POST['uid'];
 		$pnrNo1 = $_POST['pnrNo'];
+
+		$trainNo1 = $_POST['trainNo'];
+		$lastStation1 = $_POST['lastStation'];
+		$crime1 = $_POST['crime'];
+		$addInfo1 = $_POST['addInfo'];
 		
 		$authquery = "SELECT * FROM USER WHERE UID = '$uid1'";
 		$authres = mysqli_query($conn,$authquery);
@@ -29,6 +34,8 @@
 					}
 				}
 				
+				$data = [ 'status' => 'Success', 'Message' => 'FIR Registered Successfully' , 'FIR_NO' => $fir_id];
+				header('Content-Type: application/json');
 				$myJSON = json_encode($data);
 				echo $myJSON;
 				}
