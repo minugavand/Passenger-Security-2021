@@ -45,7 +45,15 @@
 			echo "<tr>";
 				echo "<td>Name</td>";
 				echo '<td>'.$result->NAME.'</td>';
-			echo '</tr>';	
+			echo '</tr>';
+			echo "<tr>";
+				echo "<td>Aadhaar Number</td>";
+				echo '<td>'.$result->UID_NO.'</td>';
+			echo '</tr>';
+			echo "<tr>";
+				echo "<td>Address</th>";
+				echo '<td>'.$result->ADDRESS.'</td>';
+			echo '</tr>';			
 			echo "<tr>";
 				echo "<td>Date of Birth</td>";
 				echo '<td>'.$result->DATE_OF_BIRTH.'</td>';
