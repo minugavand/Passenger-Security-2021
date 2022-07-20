@@ -143,37 +143,80 @@ CREATE TABLE `user` (
 --
 -- Dumping data for table `user`
 --
+INSERT INTO `user` (`UID`, `NAME`, `MOBILE_NO`, `AADHAAR_NO`) VALUES
+('9YuSrTsdOeQzwQAxsithwdENqw03', 'MANISHA ANAND YEMUL', '+918483963727', '848396372700'),
+('g6saSSmI1MVi70wDZ4pCz6K0ntu2', 'SHREYAS SHARAD PATIL', '+917767084933', '743740988757');
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `aadhaar`
+--
+ALTER TABLE `aadhaar`
+  ADD PRIMARY KEY (`UID_NO`);
 
+--
+-- Indexes for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD PRIMARY KEY (`alert_id`);
 
+--
+-- Indexes for table `fir`
+--
+ALTER TABLE `fir`
+  ADD PRIMARY KEY (`FIR_NO`),
+  ADD KEY `PNR_NO` (`PNR_NO`),
+  ADD KEY `fir_ibfk_2` (`UID`);
 
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`PNR_NO`);
 
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`UID`),
+  ADD KEY `AADHAAR_NO` (`AADHAAR_NO`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `fir`
+--
+ALTER TABLE `fir`
+  MODIFY `FIR_NO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2028;
 
+--
+-- Constraints for dumped tables
+--
 
+--
+-- Constraints for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`alert_id`) REFERENCES `user` (`UID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+--
+-- Constraints for table `fir`
+--
+ALTER TABLE `fir`
+  ADD CONSTRAINT `fir_ibfk_1` FOREIGN KEY (`PNR_NO`) REFERENCES `reservation` (`PNR_NO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fir_ibfk_2` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`AADHAAR_NO`) REFERENCES `aadhaar` (`UID_NO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
